@@ -1,4 +1,4 @@
-t#!/bin/bash
+#!/bin/bash
 # You can customize it to work with other Linux flavours and versions.
 
 
