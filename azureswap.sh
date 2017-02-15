@@ -41,8 +41,8 @@ fSetConfigValue() {
 
 }
 
+
 fSetConfigValue /etc/waagent.conf ResourceDisk.Format y
-
 fSetConfigValue /etc/waagent.conf ResourceDisk.EnableSwap y
-
 fSetConfigValue /etc/waagent.conf ResourceDisk.SwapSizeMB 8192
+
