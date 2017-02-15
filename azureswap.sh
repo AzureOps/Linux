@@ -69,6 +69,6 @@ then
   service waagent restart
   service waagent status
 elif [ $isubuntu -eq 0 ];
-  then
+then
   service walinuxagent restart
 fi
