@@ -36,11 +36,10 @@ fSetConfigValue() {
 
   if [ -s $CONF_PATH.tmp ]
   then
-    mv $CONF_PATH.tmp $CONF_PATH
+    mv $CONF_PATH.tmp $CONF_PATH
   fi
 
 }
-
 
 fSetConfigValue /etc/waagent.conf ResourceDisk.Format y
 
