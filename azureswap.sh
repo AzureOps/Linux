@@ -8,9 +8,9 @@ fGetConfigValue() {
   KEY_VALUE=$2
 
   #value=`cat $CONF_PATH | awk '/^'$KEY_VALUE'[   ][]/ { split($0, array, "[    ]*=[  ]*"); print $3;}'`
-  value=`cat $CONF_PATH | awk -F = '/^'$KEY_VALUE'[\ \  ]*=/ { split($2, array,"#"); print array[1]; }'`
+  value=`cat $CONF_PATH | awk -F = '/^'$KEY_VALUE'[\ \  ]*=/ { split($2, array,"#"); print array[1]; }'`
 
-  echo $value
+  echo $value
 
 }
 
@@ -27,12 +27,12 @@ fSetConfigValue() {
   KEY_VALUE=$2
   SET_VALUE=$3
 
-  touch $CONF_PATH.tmp
-  chmod 664 $CONF_PATH.tmp
+  touch $CONF_PATH.tmp
+  chmod 664 $CONF_PATH.tmp
 
-  value=$(fGetConfigValue $CONF_PATH $KEY_VALUE)
+  value=$(fGetConfigValue $CONF_PATH $KEY_VALUE)
 
-  cat $CONF_PATH | sed -e 's/^'$KEY_VALUE'[\ \ ]*=[\ \  ]*'$value'/'$KEY_VALUE'='$SET_VALUE'/g' > $CONF_PATH.tmp
+  cat $CONF_PATH | sed -e 's/^'$KEY_VALUE'[\ \ ]*=[\ \  ]*'$value'/'$KEY_VALUE'='$SET_VALUE'/g' > $CONF_PATH.tmp
   
   if [ -s $CONF_PATH.tmp ];
   then 
