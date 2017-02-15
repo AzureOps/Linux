@@ -33,10 +33,10 @@ fSetConfigValue() {
   value=$(fGetConfigValue $CONF_PATH $KEY_VALUE)
 
   cat $CONF_PATH | sed -e 's/^'$KEY_VALUE'[\ \ ]*=[\ \  ]*'$value'/'$KEY_VALUE'='$SET_VALUE'/g' > $CONF_PATH.tmp
-
-  if [ -s $CONF_PATH.tmp ]
+  
+  if [ -s $CONF_PATH.tmp ]
   then
-    mv $CONF_PATH.tmp $CONF_PATH
+    mv $CONF_PATH.tmp $CONF_PATH
   fi
 
 }
