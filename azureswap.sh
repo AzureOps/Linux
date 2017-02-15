@@ -1,3 +1,14 @@
+#!/bin/bash
+# You can customize it to work with other Linux flavours and versions.
+
+
+check_os() {
+    grep ubuntu /proc/version > /dev/null 2>&1
+    isubuntu=${?}
+    grep centos /proc/version > /dev/null 2>&1
+    iscentos=${?}
+}
+
 ######################################################################
 ## Config파일에서 해당 Key의 값을 얻어온다. 
 # $1 = Config Path 
@@ -42,7 +53,22 @@ fSetConfigValue() {
 }
 
 
+
+#
+# Refer to 'How to add a swap file in Linux Azure virtual machines'
+# https://support.microsoft.com/en-us/help/4010058/how-to-add-a-swap-file-in-linux-azure-virtual-machines
+#
+
 fSetConfigValue /etc/waagent.conf ResourceDisk.Format y
 fSetConfigValue /etc/waagent.conf ResourceDisk.EnableSwap y
 fSetConfigValue /etc/waagent.conf ResourceDisk.SwapSizeMB 8192
 
+
+if [ $iscentos -eq 0 ];
+then
+  service waagent restart
+  service waagent status
+elif [ $isubuntu -eq 0 ];
+  then
+  service walinuxagent restart
+fi
