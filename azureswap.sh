@@ -1,4 +1,4 @@
-#!/bin/bash
+t#!/bin/bash
 # You can customize it to work with other Linux flavours and versions.
 
 
@@ -67,8 +67,9 @@ check_os
 if [ $iscentos -eq 0 ]; 
 then 
   service waagent restart
-  service waagent status
 elif [ $isubuntu -eq 0 ];
 then
-  service walinuxagent restar
+  service walinuxagent restart
 fi
+
+echo "Please check waagent (or walinuxagent) service status and swapon summary."
