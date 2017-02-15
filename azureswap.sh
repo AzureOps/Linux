@@ -22,7 +22,7 @@ fGetConfigValue() {
 # $3 = value for change
 ######################################################################
 
-fSetConfigValue() {
+fSetConfigValue() {
   CONF_PATH=$1
   KEY_VALUE=$2
   SET_VALUE=$3
