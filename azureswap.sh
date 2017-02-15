@@ -63,7 +63,7 @@ fSetConfigValue /etc/waagent.conf ResourceDisk.Format y
 fSetConfigValue /etc/waagent.conf ResourceDisk.EnableSwap y
 fSetConfigValue /etc/waagent.conf ResourceDisk.SwapSizeMB 8192
 
-
+check_os
 if [ $iscentos -eq 0 ]; 
 then 
   service waagent restart
