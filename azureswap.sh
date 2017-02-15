@@ -64,11 +64,11 @@ fSetConfigValue /etc/waagent.conf ResourceDisk.EnableSwap y
 fSetConfigValue /etc/waagent.conf ResourceDisk.SwapSizeMB 8192
 
 
-if [ $iscentos -eq 0 ];
-then
+if [ $iscentos -eq 0 ]; 
+then 
   service waagent restart
   service waagent status
 elif [ $isubuntu -eq 0 ];
 then
-  service walinuxagent restart
+  service walinuxagent restar
 fi
