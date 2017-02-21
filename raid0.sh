@@ -89,6 +89,32 @@ then
 fi
 }
 
+do_gpt_partition() {
+
+# This function creates one (1) primary partition on the
+# disk, using all available space
+    DISK=${1}
+    echo "Partitioning disk $DISK"
+    echo "mklabel gpt
+mkpart primary ext4 0% 100%
+print
+set 1 raid on
+q
+" | parted -a optimal "${DISK}" 
+
+#> /dev/null 2>&1
+#
+# Use the bash-specific $PIPESTATUS to ensure we get the correct exit code
+# from fdisk and not from echo
+
+if [ ${PIPESTATUS[1]} -ne 0 ];
+then
+    echo "An error occurred partitioning ${DISK}" >&2
+    echo "I cannot continue" >&2
+    exit 2
+fi
+}
+
 add_to_fstab() {
     UUID=${1}
     MOUNTPOINT=${2}
@@ -122,11 +148,13 @@ configure_disks() {
     	then
             create_raid0_ubuntu
     	fi
-        do_partition ${RAIDDISK}
+        #do_partition ${RAIDDISK}
+	do_gpt_partition ${RAIDDISK}
         PARTITION="${RAIDPARTITION}"
     else
         DISK="${DISKS[0]}"
-        do_partition ${DISK}
+        #do_partition ${DISK}
+	do_gpt_partition ${DISK}
         PARTITION=$(fdisk -l ${DISK}|grep -A 1 Device|tail -n 1|awk '{print $1}')
     fi
 
