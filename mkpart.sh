@@ -2,7 +2,7 @@
 
 # You can customize it to work with other Linux flavours and versions.
 
-# MOUNTPOINT="/log"
+MOUNTPOINT="/log"
 RAIDCHUNKSIZE=512
 
 RAIDDISK="/dev/sde"
